@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //1 findviewbyid btnGet = ...
         edit_tanggal_lahir=(EditText) findViewById(R.id.edit_text_tanggal_lahir);
         edit_tanggal_lahir.setInputType(InputType.TYPE_NULL);
         edit_tanggal_lahir.setOnClickListener(new View.OnClickListener(){
@@ -46,5 +47,11 @@ public class MainActivity extends AppCompatActivity {
                 picker.show();
             }
         });
+
+        //2 click listener untuk button get
+            // 3 di dalam click listener ambil value nya edit text
+            // 4 buat intent
+            // 5 isi variabel intent (bundle)
+            // 6 send intent ke detail activity
     }
 }
