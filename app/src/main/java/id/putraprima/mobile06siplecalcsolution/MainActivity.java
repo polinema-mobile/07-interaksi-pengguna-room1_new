@@ -56,18 +56,24 @@ public class MainActivity extends AppCompatActivity {
         btnGet.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v){
-                String nama = edit_nama.getText().toString();
+//                String nama = edit_nama.getText().toString();
+//                String nim = edit_nim.getText().toString();
+//                String ttl = edit_tanggal_lahir.getText().toString();
+//
+//                int nimInput = Integer.parseInt(nim);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("dataNama", nama);
+//                bundle.putInt("dataNim", nimInput);
+//                bundle.putString("ttl", ttl);
+//                Intent i = new Intent(MainActivity.this, DetailActivity.class);
+//                i.putExtras(bundle);
+//                startActivity(i);
+                String name = edit_nama.getText().toString();
                 String nim = edit_nim.getText().toString();
-                String ttl = edit_tanggal_lahir.getText().toString();
-
-                int nimInput = Integer.parseInt(nim);
-                Bundle bundle = new Bundle();
-                bundle.putString("dataNama", nama);
-                bundle.putInt("dataNim", nimInput);
-                bundle.putString("ttl", ttl);
-                Intent i = new Intent(MainActivity.this, DetailActivity.class);
-                i.putExtras(bundle);
-                startActivity(i);
+                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+                intent.putExtra("NAME",name);
+                intent.putExtra("NIM",nim);
+                startActivity(intent);
             }
         });
         //3 di dalam click listener ambil value nya edit text
