@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -17,53 +18,97 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTestBagi {
+public class MainActivityTestForm {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTestBagi() {
+    public void mainActivityTestForm() {
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.edit_text_angka_pertama),
+                allOf(withId(R.id.edit_text_nama_mahasiswa),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("6"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("bagus"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.edit_text_angka_kedua),
+                allOf(withId(R.id.edit_text_Nomor_Induk),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("3"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("911"), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.button_bagi), withText("Bagi"),
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.edit_text_tanggal_lahir),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                6),
+                                2),
                         isDisplayed()));
-        appCompatButton.perform(click());
+        appCompatEditText3.perform(click());
+
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(android.R.id.button1), withText("OK"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                3)));
+        appCompatButton.perform(scrollTo(), click());
+
+        ViewInteraction appCompatSpinner = onView(
+                allOf(withId(R.id.spinner),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                3),
+                        isDisplayed()));
+        appCompatSpinner.perform(click());
+
+        DataInteraction appCompatTextView = onData(anything())
+                .inAdapterView(childAtPosition(
+                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+                        0))
+                .atPosition(3);
+        appCompatTextView.perform(click());
+
+        pressBack();
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.button), withText("Simpan Data"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatButton2.perform(click());
     }
 
     private static Matcher<View> childAtPosition(
