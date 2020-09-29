@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Mobile06SipleCalcSolutionlatihan</string>
+    <string-array name="german_familienname">
+        <item>Akuntansi</item>
+        <item>Mesin</item>
+        <item>Informatika</item>
+        <item>Niaga</item>
+        <item>Sipil</item>
+        <item>Elektro</item>
+        <item>Kimia</item>
+
+    </string-array>
+</resources>
