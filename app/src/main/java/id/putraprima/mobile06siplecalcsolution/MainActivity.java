@@ -9,9 +9,13 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     EditText edit_tanggal_lahir, edit_nama, edit_nim;
     Button btnGet;
     Spinner spinner;
+    RadioGroup chosen;
+    RadioButton rdbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         edit_nim=(EditText)findViewById(R.id.edit_text_Nomor_Induk);
         edit_tanggal_lahir=(EditText) findViewById(R.id.edit_text_tanggal_lahir);
         edit_tanggal_lahir.setInputType(InputType.TYPE_NULL);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        chosen=(RadioGroup)findViewById(R.id.rdGroup1);
 
         edit_tanggal_lahir.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -56,29 +64,23 @@ public class MainActivity extends AppCompatActivity {
         btnGet.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v){
-//                String nama = edit_nama.getText().toString();
-//                String nim = edit_nim.getText().toString();
-//                String ttl = edit_tanggal_lahir.getText().toString();
-//
-//                int nimInput = Integer.parseInt(nim);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("dataNama", nama);
-//                bundle.putInt("dataNim", nimInput);
-//                bundle.putString("ttl", ttl);
-//                Intent i = new Intent(MainActivity.this, DetailActivity.class);
-//                i.putExtras(bundle);
-//                startActivity(i);
                 String name = edit_nama.getText().toString();
                 String nim = edit_nim.getText().toString();
+                String tggl = edit_tanggal_lahir.getText().toString();
+                String chosenOption = spinner.getSelectedItem().toString();
+                int radiogrp = chosen.getCheckedRadioButtonId();
+                rdbtn = (RadioButton)findViewById(radiogrp);
+                String gender = rdbtn.getText().toString();
+
+
                 Intent intent = new Intent(MainActivity.this,DetailActivity.class);
                 intent.putExtra("NAME",name);
                 intent.putExtra("NIM",nim);
+                intent.putExtra("TTL",tggl);
+                intent.putExtra("CHOSEN_OPTION", chosenOption);
+                intent.putExtra("GENDER", gender);
                 startActivity(intent);
             }
         });
-        //3 di dalam click listener ambil value nya edit text
-        //4 buat intent
-        //5 isi variabel intent (bundle)
-        //6 send intent ke detail activity
     }
 }

@@ -15,21 +15,22 @@ public class DetailActivity extends AppCompatActivity {
         //1 findViewById 5 element id
         TextView namaMhs = (TextView) findViewById(R.id.Nama_mahasiswa);
         TextView nimMhs = (TextView) findViewById(R.id.nim);
-//        TextView ttl = (TextView) findViewById(R.id.tanggal_lahir);
-        //2 buka bundle
-//        if(getIntent().getExtras()!=null) {
-//            Bundle bundle = getIntent().getExtras();
-//            //3 setText masing2 element ke nilai variable bundle
-//            namaMhs.setText(bundle.getString("dataNama"));
-//            nimMhs.setText(bundle.getInt("dataNim"));
-//            ttl.setText(bundle.getString("ttl"));
-//        }
+        TextView ttl = (TextView) findViewById(R.id.tanggal_lahir);
+        TextView gender = (TextView) findViewById(R.id.kelamin);
+        TextView jurusan = (TextView)findViewById(R.id.jurusan);
+
         Intent intent = getIntent();
         String name = intent.getStringExtra("NAME");
         String nim = intent.getStringExtra("NIM");
+        String tggl = intent.getStringExtra("TTL");
+        String jnskelamin = intent.getStringExtra("GENDER");
+        String chosen = intent.getStringExtra("CHOSEN_OPTION");
 
-        namaMhs.setText("Nama : "+name);
+        namaMhs.setText("NAMA : "+name);
         nimMhs.setText("NIM   : "+nim);
+        ttl.setText("TTL   : "+tggl);
+        gender.setText("GENDER   : "+jnskelamin);
+        jurusan.setText("JURUSAN   : "+chosen);
 
     }
 }

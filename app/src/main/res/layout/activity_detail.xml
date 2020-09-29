@@ -38,21 +38,22 @@
         app:layout_constraintTop_toBottomOf="@+id/nim" />
 
     <TextView
-    android:id="@+id/kelamin"
-    android:layout_width="200dp"
-    android:layout_height="25dp"
-    android:layout_marginTop="16dp"
-    android:text="kelamin :"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.075"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir" />
+        android:id="@+id/kelamin"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:text="kelamin :"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tanggal_lahir" />
+
     <TextView
         android:id="@+id/jurusan"
         android:layout_width="200dp"
         android:layout_height="25dp"
         android:layout_marginTop="16dp"
-        android:text="kelamin :"
+        android:text="jurusan :"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
