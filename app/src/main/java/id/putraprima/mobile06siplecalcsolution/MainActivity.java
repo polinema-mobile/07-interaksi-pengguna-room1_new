@@ -3,6 +3,7 @@ package id.putraprima.mobile06siplecalcsolution;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -18,7 +19,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     DatePickerDialog picker;
-    EditText edit_tanggal_lahir;
+    EditText edit_tanggal_lahir, edit_nama, edit_nim;
     Button btnGet;
     Spinner spinner;
     @Override
@@ -26,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //1 findviewbyid btnGet = ...
+        btnGet=(Button)findViewById(R.id.button);
+        edit_nama=(EditText)findViewById(R.id.edit_text_nama_mahasiswa);
+        edit_nim=(EditText)findViewById(R.id.edit_text_Nomor_Induk);
         edit_tanggal_lahir=(EditText) findViewById(R.id.edit_text_tanggal_lahir);
         edit_tanggal_lahir.setInputType(InputType.TYPE_NULL);
-        edit_tanggal_lahir.setOnClickListener(new View.OnClickListener(){
 
+        edit_tanggal_lahir.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -47,11 +51,28 @@ public class MainActivity extends AppCompatActivity {
                 picker.show();
             }
         });
-
         //2 click listener untuk button get
-            // 3 di dalam click listener ambil value nya edit text
-            // 4 buat intent
-            // 5 isi variabel intent (bundle)
-            // 6 send intent ke detail activity
+
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+                public void onClick(View v){
+                String nama = edit_nama.getText().toString();
+                String nim = edit_nim.getText().toString();
+                String ttl = edit_tanggal_lahir.getText().toString();
+
+                int nimInput = Integer.parseInt(nim);
+                Bundle bundle = new Bundle();
+                bundle.putString("dataNama", nama);
+                bundle.putInt("dataNim", nimInput);
+                bundle.putString("ttl", ttl);
+                Intent i = new Intent(MainActivity.this, DetailActivity.class);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
+        //3 di dalam click listener ambil value nya edit text
+        //4 buat intent
+        //5 isi variabel intent (bundle)
+        //6 send intent ke detail activity
     }
 }
