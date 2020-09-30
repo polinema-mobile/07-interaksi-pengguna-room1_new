@@ -24,7 +24,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
     DatePickerDialog picker;
     EditText edit_tanggal_lahir, edit_nama, edit_nim;
-    Button btnGet;
+    Button btnGet,btnGet2;
     Spinner spinner;
     RadioGroup chosen;
     RadioButton rdbtn;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //1 findviewbyid btnGet = ...
         btnGet=(Button)findViewById(R.id.button);
+        btnGet2=(Button)findViewById(R.id.button2);
         edit_nama=(EditText)findViewById(R.id.edit_text_nama_mahasiswa);
         edit_nim=(EditText)findViewById(R.id.edit_text_Nomor_Induk);
         edit_tanggal_lahir=(EditText) findViewById(R.id.edit_text_tanggal_lahir);
@@ -79,6 +80,20 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("TTL",tggl);
                 intent.putExtra("CHOSEN_OPTION", chosenOption);
                 intent.putExtra("GENDER", gender);
+                startActivity(intent);
+            }
+        });
+
+        btnGet2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int selectedId = chosen.getCheckedRadioButtonId();
+                rdbtn = (RadioButton) findViewById(selectedId);
+                Mahasiswa mhs = new Mahasiswa(edit_nama.getText().toString(),
+                        edit_nim.getText().toString(),edit_tanggal_lahir.getText().toString(),rdbtn.getText().toString(),spinner.getSelectedItem().toString());
+
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra("Mahasiswa", mhs);
                 startActivity(intent);
             }
         });

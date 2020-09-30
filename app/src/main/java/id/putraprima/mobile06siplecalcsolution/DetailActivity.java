@@ -20,17 +20,13 @@ public class DetailActivity extends AppCompatActivity {
         TextView jurusan = (TextView)findViewById(R.id.jurusan);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("NAME");
-        String nim = intent.getStringExtra("NIM");
-        String tggl = intent.getStringExtra("TTL");
-        String jnskelamin = intent.getStringExtra("GENDER");
-        String chosen = intent.getStringExtra("CHOSEN_OPTION");
+        Mahasiswa mhs = intent.getParcelableExtra("Mahasiswa");
 
-        namaMhs.setText("NAMA : "+name);
-        nimMhs.setText("NIM   : "+nim);
-        ttl.setText("TTL   : "+tggl);
-        gender.setText("GENDER   : "+jnskelamin);
-        jurusan.setText("JURUSAN   : "+chosen);
+        namaMhs.setText( mhs.getNama());
+        nimMhs.setText(mhs.getNim());
+        ttl.setText(mhs.getTanggalLahir());
+        gender.setText (mhs.getJenisKelamin());
+        jurusan.setText(mhs.getJurusan());
 
     }
 }
